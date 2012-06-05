@@ -3,7 +3,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -112,11 +111,10 @@ public class XMLReader {
 	 */
 	private FileSource getFileSource(Element filSEl) {
 		
-		//for each <FileSource> element get text or int values of 
-		//name ,id, age and name
+	
 		String iPath = getTextValue(filSEl,"InputFilePath");
 		String oPath = getTextValue(filSEl,"OutputFilePath");
-		String regExp = getTextValue(filSEl,"RegExp");
+		List <RegExpDescritor> regExp = getRegExpDescritor(filSEl);
 		String readAllFiles = getTextValue(filSEl,"readAllFiles");
 		System.out.println(iPath);
 		List<FileInformation> fileInformationList;
@@ -151,6 +149,33 @@ public class XMLReader {
 		
 		return f;
 	}
+
+	private List<RegExpDescritor> getRegExpDescritor(Element filSEl) {
+		ArrayList<RegExpDescritor> listRegExps = new ArrayList<RegExpDescritor>();
+		
+		NodeList nl = filSEl.getElementsByTagName("RegExps");
+		
+		if(nl != null && nl.getLength() > 0) {
+			for(int i = 0 ; i < nl.getLength();i++) {
+				
+				//get the element
+				Element el = (Element)nl.item(i);
+				
+				//get the FileSource object
+				RegExpDescritor f = new RegExpDescritor(getTextValue(el, "String"),
+														getIntValue(el,"Priority"));
+				
+				//add it to list
+				listRegExps.add(f);
+			}
+		}
+		
+		Collections.sort(listRegExps);
+		
+		return listRegExps;
+	}
+
+	
 
 	/*
 	 * Function that given a complete filename with extension, extracts
@@ -201,5 +226,9 @@ public class XMLReader {
 		return textVal;
 	}
 
+	private int getIntValue(Element el, String string) {
+
+		return Integer.parseInt(getTextValue(el, string));
+	}
 }
 	

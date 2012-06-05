@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -5,11 +6,11 @@ public class FileSource {
 
 	private String inputFilePath;
 	private List <FileInformation> files;
-	private String regExp;
+	private List <RegExpDescritor> regExp;
 	private String outputFilepath;
 	
 	public FileSource(String inputFilePath, List<FileInformation> files,
-			String outputFilepath, String regExp) {
+			String outputFilepath, List <RegExpDescritor> regExp) {
 		super();
 		this.inputFilePath = inputFilePath;
 		this.files = files;
@@ -17,8 +18,8 @@ public class FileSource {
 		this.regExp = regExp;
 	}
 
-	public String getRegExp() {
-		return regExp;
+	public List <RegExpDescritor> getRegExp() {
+		return new ArrayList<RegExpDescritor>(regExp);
 	}
 
 	public String getOutputFilepath() {
