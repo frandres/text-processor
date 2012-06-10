@@ -20,7 +20,6 @@ public class RegExpDescritor implements Comparable<RegExpDescritor> {
 
 	@Override
 	public int compareTo(RegExpDescritor o) {
-		
 		return this.getPriority()-o.getPriority();
 			
 	}

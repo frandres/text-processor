@@ -116,7 +116,6 @@ public class XMLReader {
 		String oPath = getTextValue(filSEl,"OutputFilePath");
 		List <RegExpDescritor> regExp = getRegExpDescritor(filSEl);
 		String readAllFiles = getTextValue(filSEl,"readAllFiles");
-		System.out.println(iPath);
 		List<FileInformation> fileInformationList;
 		
 		
@@ -153,7 +152,7 @@ public class XMLReader {
 	private List<RegExpDescritor> getRegExpDescritor(Element filSEl) {
 		ArrayList<RegExpDescritor> listRegExps = new ArrayList<RegExpDescritor>();
 		
-		NodeList nl = filSEl.getElementsByTagName("RegExps");
+		NodeList nl = filSEl.getElementsByTagName("RegExp");
 		
 		if(nl != null && nl.getLength() > 0) {
 			for(int i = 0 ; i < nl.getLength();i++) {
@@ -171,7 +170,7 @@ public class XMLReader {
 		}
 		
 		Collections.sort(listRegExps);
-		
+				
 		return listRegExps;
 	}
 

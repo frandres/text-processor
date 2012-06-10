@@ -3,6 +3,7 @@ import java.util.List;
 public class TextProcessor {
 	 
 	public static void main(String[] args) {
+		
 		 if(args.length < 1) {
 	        	System.out.println("usage: java TextProcessor <files>");
 	        	System.exit(0);
@@ -13,7 +14,6 @@ public class TextProcessor {
 		 
 		 Extractor.processFiles(fSources);
 		 
-	
 	}
 	
 
